@@ -1,21 +1,5 @@
 // User Model for Social App
 const { Schema, model } = require('mongoose');
-const { INTEGER } = require('sequelize');
-
-// TODO Make seed data in Json format
-// username: 'Sally Shell',
-// email: 'ss@gmail.com',
-// thoughts: [
-//   { 
-//     _id : 3,
-//   }
-// ],
-// friends: [{ 2 }]
-
-// var validateEmail = function (email) {
-//     var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-//     return re.test(email)
-//};
 
 const userSchema = new Schema(
     {
@@ -24,24 +8,24 @@ const userSchema = new Schema(
             unique: true,
             required: true,
             trim: true,
-            // TODO trimmed, ???
         },
         email: {
             type: String,
             unique: true,
             required: true,
             // must match a valid email address
-            match: [/.+@.+\..+/, 'needs to be in email format']
-
-        },
+            match: [
+                /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+                "needs to be a valid email",
+            ],
+        },      
         thoughts: [
-            // ###### TODO  FIX this reference: Array of _id values referencing the THOUGHT model
             {
                 type: Schema.Types.ObjectId,
                 ref: 'Thought',
             }
         ],
-        // array of _id values referencing the USER model (self reference)     
+    
         friends: [
             {
                 type: Schema.Types.ObjectId,
