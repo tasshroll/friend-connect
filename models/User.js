@@ -1,4 +1,4 @@
-// User Model for Social App
+// User Model for Social App using Mongoose
 const { Schema, model } = require('mongoose');
 
 const userSchema = new Schema(
@@ -18,45 +18,41 @@ const userSchema = new Schema(
                 /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
                 "needs to be a valid email",
             ],
-        },      
+        },  
+        // reference to Thought model that contains user's thoughts    
         thoughts: [
             {
                 type: Schema.Types.ObjectId,
                 ref: 'Thought',
             }
         ],
-    
+        // array of user's friends
         friends: [
             {
                 type: Schema.Types.ObjectId,
                 ref: 'User',
             }
         ],
-
     },
     {
         toJSON: {
+            // Getter & Virtual functions are included with the response
+            // when the User document is converted to JSON  
             getters: true,
-            // Virtuals will be included with our response, overriding the default behavior
             virtuals: true,
         },
         id: false,
     }
 );
 
-// TODO Fix this virtual
-// Create a virtual property `friendCount` that tracks the # of friends per user
+// `friendCount` is a virtual property that tracks the # of friends per user
 userSchema
     .virtual('friendCount')
     // Getter
     .get(function () {
         return this.friends.length;
     })
- 
 
-
-// TODO Need help getting this right
-
-// Initialize our User model
+// Initialize the User model
 const User = model('User', userSchema);
 module.exports = User;

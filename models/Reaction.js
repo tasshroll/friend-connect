@@ -1,5 +1,7 @@
 const { Schema, Types } = require('mongoose');
 
+// Schema to hold individual replies to user Thoughts
+// referenced by Thought model
 const reactionSchema = new Schema(
     {
         reactionId: {
@@ -22,11 +24,9 @@ const reactionSchema = new Schema(
             get: function() {
                 return this._doc.createdAt.toLocaleString();
             }
-            // TODO Use a getter methodd to formaat the timestamp on query
         }
 
     },
-    // TODO not sure about this toJSON section
     {
         toJSON: {
             getters: true,

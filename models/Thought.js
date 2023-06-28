@@ -1,6 +1,9 @@
 const { Schema, model } = require('mongoose');
 const reactionSchema = require('./Reaction');
 
+
+// model to create individual documents to contain thought properties
+// This model is referenced by the User model
 const thoughtSchema = new Schema(
     {
         thoughtText: {
@@ -20,17 +23,22 @@ const thoughtSchema = new Schema(
             type: String,
             required: true,
         },
+        // These are replies to user's thoughts
+        // It is an array off nested subdocuments
         reactions: [reactionSchema],
     },
     {
         toJSON: {
+            // Getter & Virtual functions are included with the response
+            // when the User document is converted to JSON  
             getters: true,
+            virtuals: true,
         },
         id: false,
     }
 );
 
-// Virtual property `reactionCount` that retreives the length 
+// Virtual property `reactionCount` retreives the length 
 // of the thoughts 'reactions' array field on query
 thoughtSchema
     .virtual('reactionCount')

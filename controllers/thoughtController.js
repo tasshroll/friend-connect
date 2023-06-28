@@ -1,4 +1,7 @@
-const { ObjectId } = require('mongoose').Types;
+// Functions used to interact with the Thought model.
+// These functions: Create a thought, Get all thoughts, update a thought, get single thought,
+// delete a thought, add a reaction, delete a reaction
+//const { ObjectId } = require('mongoose').Types;
 const { User, Thought } = require('../models');
 
 
@@ -19,7 +22,6 @@ const thoughtController = {
   // route: /api/thoughts
   async createThought(req, res) {
     try {
-      console.log("Creating Thought");
       const thought = await Thought.create(req.body);
       if (!thought) {
         console.log("Could not create thought in DB")
@@ -27,15 +29,15 @@ const thoughtController = {
       const user = await User.findByIdAndUpdate(
         { _id: req.body.userId },
         { $push: { thoughts: thought } },
+        { new: true },
       );
-      return res.json(user);
+      res.json(user);
       if (!user) {
         console.log("No user found with userId on URL")
       };
-      console.log(user);
     } catch (err) {
       console.log(err);
-      
+
       return res.status(500).json(err);
     }
   },
@@ -62,13 +64,13 @@ const thoughtController = {
   async getSingleThought(req, res) {
     try {
       const thoughtToGet = req.params.thoughtId;
-      console.log(`getting thought ${thoughtToGet}`);
 
       const thought = await Thought.findOne({ _id: thoughtToGet });
-      return res.json(thought);
       if (!thought) {
         console.log("That thought id was not found")
       };
+      return res.json(thought);
+
     } catch (err) {
       return res.status(500).json(err);
     }
@@ -95,9 +97,8 @@ const thoughtController = {
       const thoughtId = req.params.thoughtId;
 
       const thought = await Thought.findOne({ _id: thoughtId });
-      console.log(thought);
       if (!thought) {
-        res.status(404).json({ message: "Thought id not found"});
+        res.status(404).json({ message: "Thought id not found" });
       };
       const reaction = await Thought.findOneAndUpdate(
         { _id: thoughtId },
@@ -115,15 +116,14 @@ const thoughtController = {
   // route: api/thoughts/:thoughtId/reactions/:reactionId
   async removeReaction(req, res) {
     try {
-      console.log("Removivng");
       const reaction = await Thought.findOneAndUpdate(
         { _id: req.params.thoughtId },
         { $pull: { reactions: { reactionId: req.params.reactionId } } },
-        {new: true}
+        { new: true }
       )
 
       if (!reaction) {
-        res.status(404).json({ message: 'Thought ID not found'});
+        res.status(404).json({ message: 'Thought ID not found' });
       };
 
       return res.json(reaction);
