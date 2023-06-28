@@ -12,15 +12,15 @@ const thoughtSchema = new Schema(
         createdAt: {
             type: Date,
             default: Date.now,
+            get: function () {
+                return this._doc.createdAt.toLocaleString();
+            }
         },
         username: {
             type: String,
             required: true,
         },
-        reactions: {
-            // array of nested documents created with the reactionsSchema
-            reactions: [reactionSchema],
-        }
+        reactions: [reactionSchema],
     },
     {
         toJSON: {
@@ -29,7 +29,6 @@ const thoughtSchema = new Schema(
         id: false,
     }
 );
-
 
 // Virtual property `reactionCount` that retreives the length 
 // of the thoughts 'reactions' array field on query

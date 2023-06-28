@@ -9,7 +9,8 @@ const reactionSchema = new Schema(
         reactionBody: {
             type: String,
             required: true,
-            max: 280,
+            minlength: 1,
+            maxlength: 280,
         },
         username: {
             type: String,
@@ -18,6 +19,9 @@ const reactionSchema = new Schema(
         createdAt: {
             type: Date,
             default: Date.now,
+            get: function() {
+                return this._doc.createdAt.toLocaleString();
+            }
             // TODO Use a getter methodd to formaat the timestamp on query
         }
 
