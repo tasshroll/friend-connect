@@ -1,12 +1,12 @@
 # Social App
 
-This social network web application allows users to share their thoughts, react to friends' thoughts, and create a friend list. 
+This social network web application allows for users to create a friend list with one other, to share their thoughts and react to friends' thoughts. 
 
 # Description
 
-This app uses the [Express.js](https://www.npmjs.com/package/express) package as the server back-end and [Mongoose](https://www.npmjs.com/package/mongoose) for the interface to Mongo DB. This is a back-end application. 
+Social Network APIapp is a back-end application. This app builds a Mongo database containing two models: Users and Thoughts which store pertinent data. The mongo database is named socialmediaDB.The app uses the [Express.js](https://www.npmjs.com/package/express) package as the server back-end and [Mongoose](https://www.npmjs.com/package/mongoose) for the interface to Mongo DB. This implements NoSQL (short for "not only SQL"). NoSQL handles large volumes of unstructured or semi-structured data. To use this app, you will need a REST client for making HTTP requests. Two such development platfoms are [Insomnia](https://insomnia.rest/) and [Postman](https://www.postman.com/product/rest-client/). The video below demonstrates Insomnia. 
 
-Insomnia is used as a REST client to seed the database and test the backend API routes. It will send HTTP requests to the app and users can view the responses. This app builds a Mongo database containing two models: Users and Thoughts which store pertinent data. The mongo database is named socialmediaDB.
+Insomnia is used as a REST client to seed the database and test the backend API routes. It will send HTTP requests to the app and users can view the responses. 
 
 [![License](https://img.shields.io/badge/License-n/a-n/a.svg)](n/a)
 
@@ -14,10 +14,10 @@ Insomnia is used as a REST client to seed the database and test the backend API 
 https://github.com/tasshroll/friend-connect
 
 # Screenshots
-ecommerce_db in mysql after seeds file has run
 
-![ecommerce_db after seeds file has run](Assets/mysql-db-after-seeds.png)
+`Making a HTTP GET request to retreive all users in the database with Insomnia.`
 
+![HTTP request to GET All Users in Insomnia](Assets/Insomnia_GET_all_users_route.png) 
 
 ## Video
 
