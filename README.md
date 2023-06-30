@@ -21,7 +21,9 @@ https://github.com/tasshroll/friend-connect
 
 ## Video
 
-[Click here for Video demonstration of social App](https://youtu.be/MUitKzEsRis)
+Demonstration of starting the app and using Insomnia to reach API endpoints. Users are added/removed as well as friends. Thoughts are inserted and reactions to those thoughts are added. All endpoints are demonstrated per the Tests section below. 
+
+[Click here for Video demonstration of social App](https://youtu.be/03-QvXwLwMc)
 
 ## Table of Contents
 
