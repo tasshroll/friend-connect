@@ -1,6 +1,6 @@
 # Social App
 
-This social network web application allows for users to create a friend list with one other, to share their thoughts and react to friends' thoughts. 
+Connect, share, and engage with friends on a social networking web app. Create friend lists, share thoughts, and react to posts, fostering meaningful connections and conversations in a user-friendly environment.
 
 # Description
 
